@@ -12,7 +12,9 @@ describe("Main module initialization", () => {
 
   test("It should throw an error if configured twice", () => {
     apiaudio.configure({ apiKey, debug });
-    expect(() => apiaudio.configure({ apiKey, debug })).toThrowError(/has already been initialized/);
+    expect(() => apiaudio.configure({ apiKey, debug })).toThrowError(
+      /has already been initialized/
+    );
   });
 
   test("It should NOT throw an error if configured twice after resetting", () => {
