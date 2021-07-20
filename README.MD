@@ -1,6 +1,6 @@
 [![npm](https://img.shields.io/npm/v/apiaudio?style=for-the-badge)](https://www.npmjs.com/package/apiaudio)
 
-# Aflorithmic Javascript SDK
+# api.audio Javascript SDK
 
 ## Documentation
 
