@@ -1,10 +1,10 @@
-import Aflr, { Script, Speech, Mastering, Sound } from "../index";
+import apiaudio, { Script, Speech, Mastering, Sound } from "../index";
 import { RequestBase } from "../RequestBase";
 import { debug, apiKey } from "../../test-config";
 
 describe("Mastering module initialization", () => {
   beforeEach(() => {
-    Aflr.reset();
+    apiaudio.reset();
   });
 
   test("It should return an error if not configured", () => {
@@ -14,14 +14,14 @@ describe("Mastering module initialization", () => {
   });
 
   test("It should not allow submodule configuration", () => {
-    Aflr.configure({ apiKey: "some-api-key" });
+    apiaudio.configure({ apiKey: "some-api-key" });
     expect(() =>
       Mastering.configure({ apiKey: "1", baseUrl: "1" }, new RequestBase(""))
     ).toThrowError(/has already been initialized/);
   });
 
   test("It should have some properties", () => {
-    Aflr.configure({ apiKey: "some-api-key" });
+    apiaudio.configure({ apiKey: "some-api-key" });
     expect(Mastering).toHaveProperty("create");
     expect(Mastering).toHaveProperty("retrieve");
   });
@@ -29,8 +29,8 @@ describe("Mastering module initialization", () => {
 
 describe("Mastering operations", () => {
   beforeEach(() => {
-    Aflr.reset();
-    Aflr.configure({ apiKey, debug });
+    apiaudio.reset();
+    apiaudio.configure({ apiKey, debug });
   });
   const username = "salih";
   const testScriptText =

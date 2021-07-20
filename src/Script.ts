@@ -1,4 +1,4 @@
-import { Aflr } from "./Aflr";
+import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
 import { IConfig, IScriptBody } from "./types";
@@ -72,4 +72,4 @@ export class ScriptClass {
 }
 
 export const Script = new ScriptClass();
-Aflr.register(Script);
+apiaudio.register(Script);

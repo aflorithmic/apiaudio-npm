@@ -1,10 +1,10 @@
-import Aflr, { Voice } from "../index";
+import apiaudio, { Voice } from "../index";
 import { RequestBase } from "../RequestBase";
 import { debug, apiKey } from "../../test-config";
 
 describe("Voice module initialization", () => {
   beforeEach(() => {
-    Aflr.reset();
+    apiaudio.reset();
   });
 
   test("It should return an error if not configured", () => {
@@ -12,14 +12,14 @@ describe("Voice module initialization", () => {
   });
 
   test("It should not allow submodule configuration", () => {
-    Aflr.configure({ apiKey: "some-api-key" });
+    apiaudio.configure({ apiKey: "some-api-key" });
     expect(() => Voice.configure({ apiKey: "1", baseUrl: "1" }, new RequestBase(""))).toThrowError(
       /has already been initialized/
     );
   });
 
   test("It should have some properties", () => {
-    Aflr.configure({ apiKey: "some-api-key" });
+    apiaudio.configure({ apiKey: "some-api-key" });
     expect(Voice).toHaveProperty("list");
   });
 });
@@ -27,8 +27,8 @@ describe("Voice module initialization", () => {
 describe("Voice operations", () => {
   let allVoicesCount: number;
   beforeEach(() => {
-    Aflr.reset();
-    Aflr.configure({ apiKey, debug });
+    apiaudio.reset();
+    apiaudio.configure({ apiKey, debug });
   });
 
   test("It should list all of the voices", async () => {

@@ -10,10 +10,10 @@ export interface IConfig extends IInputConfig {
 }
 
 export enum ErrorTypes {
-  validAuth = "API key or Bearer token must be a valid string. - AFLR",
-  notInitialized = "You should configure the package before using it. - AFLR",
-  alreadyInitializedSubmodule = "This submobule has already been initialized and configured, do not try to configure it directly. - AFLR",
-  alreadyInitializedModule = "The package has already been initialized and configured. Do not try to configure it again. If you want to reset it, use Aflr.reset() - AFLR"
+  validAuth = "API key or Bearer token must be a valid string. - apiaudio",
+  notInitialized = "You should configure the package before using it. - apiaudio",
+  alreadyInitializedSubmodule = "This submobule has already been initialized and configured, do not try to configure it directly. - apiaudio",
+  alreadyInitializedModule = "The package has already been initialized and configured. Do not try to configure it again. If you want to reset it, use apiaudio.reset() - apiaudio"
 }
 
 export interface IScriptBody {

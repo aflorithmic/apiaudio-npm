@@ -1,10 +1,10 @@
-import Aflr, { Script } from "../index";
+import apiaudio, { Script } from "../index";
 import { RequestBase } from "../RequestBase";
 import { debug, apiKey } from "../../test-config";
 
 describe("Script module initialization", () => {
   beforeEach(() => {
-    Aflr.reset();
+    apiaudio.reset();
   });
 
   test("It should return an error if not configured", () => {
@@ -12,14 +12,14 @@ describe("Script module initialization", () => {
   });
 
   test("It should not allow submodule configuration", () => {
-    Aflr.configure({ apiKey: "some-api-key" });
+    apiaudio.configure({ apiKey: "some-api-key" });
     expect(() => Script.configure({ apiKey: "1", baseUrl: "1" }, new RequestBase(""))).toThrowError(
       /has already been initialized/
     );
   });
 
   test("It should have some properties", () => {
-    Aflr.configure({ apiKey: "some-api-key" });
+    apiaudio.configure({ apiKey: "some-api-key" });
     expect(Script).toHaveProperty("list");
     expect(Script).toHaveProperty("create");
     expect(Script).toHaveProperty("retrieve");
@@ -28,8 +28,8 @@ describe("Script module initialization", () => {
 
 describe("Script operations", () => {
   beforeEach(() => {
-    Aflr.reset();
-    Aflr.configure({ apiKey, debug });
+    apiaudio.reset();
+    apiaudio.configure({ apiKey, debug });
   });
   const testScriptText = "Hey testing testing!";
   const testValues = "test7";

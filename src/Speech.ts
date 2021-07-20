@@ -1,4 +1,4 @@
-import { Aflr } from "./Aflr";
+import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
 import { IConfig, ISpeechBody, PersonalisationParameters } from "./types";
@@ -60,4 +60,4 @@ export class SpeechClass {
 }
 
 export const Speech = new SpeechClass();
-Aflr.register(Speech);
+apiaudio.register(Speech);

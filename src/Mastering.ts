@@ -1,4 +1,4 @@
-import { Aflr } from "./Aflr";
+import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
 import { IConfig, IMasteringBody, PersonalisationParameters } from "./types";
@@ -64,4 +64,4 @@ export class MasteringClass {
 }
 
 export const Mastering = new MasteringClass();
-Aflr.register(Mastering);
+apiaudio.register(Mastering);

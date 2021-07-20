@@ -1,4 +1,4 @@
-import { Aflr } from "./Aflr";
+import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
 import { IConfig, ISoundBody } from "./types";
@@ -78,4 +78,4 @@ export class SoundClass {
 }
 
 export const Sound = new SoundClass();
-Aflr.register(Sound);
+apiaudio.register(Sound);

@@ -13,7 +13,7 @@ interface IComponent {
   reset(): void;
 }
 
-class AflrClass {
+class apiaudioClass {
   public Script!: ScriptClass;
   public Speech!: SpeechClass;
   public Voice!: VoiceClass;
@@ -64,4 +64,4 @@ class AflrClass {
   }
 }
 
-export const Aflr = new AflrClass();
+export const apiaudio = new apiaudioClass();

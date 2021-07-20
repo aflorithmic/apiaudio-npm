@@ -1,4 +1,4 @@
-import { Aflr } from "./Aflr";
+import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
 import { IConfig, IVoiceFilteringBody } from "./types";
@@ -48,4 +48,4 @@ export class VoiceClass {
 }
 
 export const Voice = new VoiceClass();
-Aflr.register(Voice);
+apiaudio.register(Voice);

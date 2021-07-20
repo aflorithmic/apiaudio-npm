@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/aflr?style=for-the-badge)](https://www.npmjs.com/package/aflr)
+[![npm](https://img.shields.io/npm/v/apiaudio?style=for-the-badge)](https://www.npmjs.com/package/apiaudio)
 
 # Aflorithmic Javascript SDK
 
@@ -6,24 +6,24 @@
 
 ### Installation
 
-`yarn add aflr` or `npm install --save aflr`
+`yarn add apiaudio` or `npm install --save apiaudio`
 
 ### Import and Usage
 
 It can be used by a **singular import** or **modular imports**.
 
 ```javascript
-import Aflr from "aflr";
+import apiaudio from "apiaudio";
 
-Aflr.configure(...);
+apiaudio.configure(...);
 
-Aflr.Script.list();
+apiaudio.Script.list();
 ```
 
 ```javascript
-import Aflr, { Script, Voice, Speech } from "aflr";
+import apiaudio, { Script, Voice, Speech } from "apiaudio";
 
-Aflr.configure(...);
+apiaudio.configure(...);
 
 Script.list();
 ```
