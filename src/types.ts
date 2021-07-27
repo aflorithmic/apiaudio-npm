@@ -56,6 +56,16 @@ export interface ISoundBody {
   backgroundTrackId: string;
 }
 
+export interface ISoundTemplatesFilteringBody {
+  /** Placeholder allowed parameters to be updated after database is completed */
+  tags?: string;
+  industryExamples?: string;
+  genre?: string;
+  contents?: string;
+  tempo?: string;
+  [key: string]: any;
+}
+
 export type SectionConfig = {
   /** Voice name. See the list of available voices using Voice resource. Default voice is "Joanna".
    */
