@@ -27,6 +27,7 @@ describe("Sound module initialization", () => {
 });
 
 describe("Sound operations", () => {
+  let allTemplatesCount: number;
   beforeEach(() => {
     apiaudio.reset();
     apiaudio.configure({ apiKey, debug });
@@ -124,6 +125,54 @@ describe("Sound operations", () => {
         expect(template).toHaveProperty("contents");
         expect(Array.isArray(template?.contents)).toBe(true);
       }
+    } catch (e) {
+      console.error(e);
+      throw new Error("test failed");
+    }
+  });
+
+  test("It should list all the sound template allowed filtering parameters", async () => {
+    try {
+      const parameters: any = await Sound.parameters();
+      expect(typeof parameters).toEqual("object");
+      for (const parameter in parameters) {
+        expect(Array.isArray(parameters[parameter])).toBe(true);
+        for (const value of parameters[parameter]) {
+          expect(typeof value).toEqual("string");
+        }
+      }
+    } catch (e) {
+      console.error(e);
+      throw new Error("test failed");
+    }
+  });
+
+  test("It should list all the sound templates", async () => {
+    try {
+      const rawResult: any = await Sound.list_v2();
+      expect(rawResult).toHaveProperty("templates");
+      const { templates } = rawResult;
+      allTemplatesCount = templates.length;
+      expect(Array.isArray(templates)).toBe(true);
+      for (const template of templates) {
+        expect(template).toHaveProperty("templateName");
+        expect(template).toHaveProperty("description");
+        expect(Array.isArray(template?.contents)).toBe(true);
+        expect(Array.isArray(template?.tags)).toBe(true);
+      }
+    } catch (e) {
+      console.error(e);
+      throw new Error("test failed");
+    }
+  });
+
+  test("It should list all the sound templates that match some filtering parameters", async () => {
+    try {
+      const rawResult: any = await Sound.list_v2({ tags: "melodic,happy", genre: "electronic" });
+      expect(rawResult).toHaveProperty("templates");
+      const { templates } = rawResult;
+      expect(Array.isArray(templates)).toBe(true);
+      expect(templates.length).toBeLessThanOrEqual(allTemplatesCount);
     } catch (e) {
       console.error(e);
       throw new Error("test failed");
