@@ -178,4 +178,21 @@ describe("Sound operations", () => {
       throw new Error("test failed");
     }
   });
+
+  test("It should return an error when sending a wrong filtering parameter", async () => {
+    try {
+      const bad_tag_name = "bad_tag_name";
+      const rawResult: any = await Sound.list_v2({ bad_tag_name });
+      expect(rawResult).toHaveProperty("message");
+      expect(rawResult).toHaveProperty("allowedFilteringParameters");
+      const { message, allowedFilteringParameters } = rawResult;
+      expect(Array.isArray(allowedFilteringParameters)).toBe(true);
+      console.log(message);
+      expect(typeof message).toEqual("string");
+      expect(message.includes(bad_tag_name)).toBe(true);
+    } catch (e) {
+      console.error(e);
+      throw new Error("test failed");
+    }
+  });
 });
