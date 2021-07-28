@@ -189,7 +189,7 @@ describe("Sound operations", () => {
       const { message, allowedFilteringParameters } = e;
       expect(Array.isArray(allowedFilteringParameters)).toBe(true);
       expect(typeof message).toEqual("string");
-      expect(message.includes(bad_tag_name)).toBe(true);
+      expect(message).toMatch(bad_tag_name);
     }
   });
 });
