@@ -76,9 +76,12 @@ describe("Sound operations", () => {
   test("It should create the sound template", async () => {
     try {
       const bg_tracks: any = await Sound.list();
+      expect(bg_tracks).toHaveProperty("templates");
+      const { templates } = bg_tracks;
+      const backgroundTrackId = templates[0]["soundTemplateId"];
       const rawResult: any = await Sound.create({
         scriptId: createdScriptId,
-        backgroundTrackId: bg_tracks["tracklist"][0]
+        backgroundTrackId
       });
       expect(rawResult.url.startsWith("https://")).toBe(true);
       expect(rawResult.url).toMatch(`${testValues}/${testValues}/${testValues}`);
@@ -98,21 +101,6 @@ describe("Sound operations", () => {
       throw new Error("test failed");
     }
   }, 30000);
-
-  test("It should list all the background tracks", async () => {
-    try {
-      const rawResult: any = await Sound.list();
-      expect(rawResult).toHaveProperty("tracklist");
-      expect(rawResult).toHaveProperty("trackUrls");
-      expect(Array.isArray(rawResult?.tracklist)).toBe(true);
-      for (const value in rawResult?.trackUrls) {
-        expect(typeof value).toEqual("string");
-      }
-    } catch (e) {
-      console.error(e);
-      throw new Error("test failed");
-    }
-  });
 
   test("It should list all the sound templates", async () => {
     try {
@@ -149,7 +137,7 @@ describe("Sound operations", () => {
 
   test("It should list all the sound templates", async () => {
     try {
-      const rawResult: any = await Sound.list_v2();
+      const rawResult: any = await Sound.list();
       expect(rawResult).toHaveProperty("templates");
       const { templates } = rawResult;
       allTemplatesCount = templates.length;
@@ -168,7 +156,7 @@ describe("Sound operations", () => {
 
   test("It should list all the sound templates that match some filtering parameters", async () => {
     try {
-      const rawResult: any = await Sound.list_v2({ tags: "melodic,happy", genre: "electronic" });
+      const rawResult: any = await Sound.list({ tags: "melodic,happy", genre: "electronic" });
       expect(rawResult).toHaveProperty("templates");
       const { templates } = rawResult;
       expect(Array.isArray(templates)).toBe(true);
@@ -182,7 +170,7 @@ describe("Sound operations", () => {
   test("It should return an error when sending a wrong filtering parameter", async () => {
     const bad_tag_name = "bad_tag_name";
     try {
-      await Sound.list_v2({ bad_tag_name });
+      await Sound.list({ bad_tag_name });
     } catch (e) {
       expect(e).toHaveProperty("message");
       expect(e).toHaveProperty("allowedFilteringParameters");
