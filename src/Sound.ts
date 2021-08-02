@@ -8,9 +8,8 @@ export class SoundClass {
   #RequestClass!: RequestBase;
   #url = "";
   #file_url = "";
-  #bg_url = "";
   #template_url = "";
-  #template_url_v2 = "";
+  #list_sound_templates_filtering = "";
   #parameters_url = "";
 
   public configure(config: IConfig, requestClass: RequestBase): void {
@@ -19,10 +18,9 @@ export class SoundClass {
     }
     this.#url = `${config.baseUrl}/sound`;
     this.#file_url = `${config.baseUrl}/file/sound`;
-    this.#bg_url = `${config.baseUrl}/file/background_track`;
     this.#template_url = `${config.baseUrl}/file/soundtemplates`;
-    this.#template_url_v2 = `${config.baseUrl}/sound/list`;
-    this.#parameters_url = `${config.baseUrl}/sound/parameters`;
+    this.#list_sound_templates_filtering = `${config.baseUrl}/sound/template`;
+    this.#parameters_url = `${config.baseUrl}/sound/parameter`;
     this.#initialized = true;
     this.#RequestClass = requestClass;
   }
@@ -51,13 +49,13 @@ export class SoundClass {
   }
 
   /**
-   * List all background tracks including a 15 seconds audio snippet
+   * List all the available sound templates (allows optional filtering)
    */
-  public list(): Promise<unknown> {
+  public list(params?: ISoundTemplatesFilteringBody): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#bg_url);
+    return this.#RequestClass.getRequest(this.#list_sound_templates_filtering, "", { params });
   }
 
   /**
@@ -68,16 +66,6 @@ export class SoundClass {
       isInitializedError();
     }
     return this.#RequestClass.getRequest(this.#template_url);
-  }
-
-  /**
-   * List all the available sound templates (newer version, allows optional filtering)
-   */
-  public list_v2(params?: ISoundTemplatesFilteringBody): Promise<unknown> {
-    if (!this.#initialized) {
-      isInitializedError();
-    }
-    return this.#RequestClass.getRequest(this.#template_url_v2, "", { params });
   }
 
   /**
@@ -96,9 +84,8 @@ export class SoundClass {
     this.#RequestClass = undefined;
     this.#url = "";
     this.#file_url = "";
-    this.#bg_url = "";
     this.#template_url = "";
-    this.#template_url_v2 = "";
+    this.#list_sound_templates_filtering = "";
     this.#parameters_url = "";
   }
 }
