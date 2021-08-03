@@ -111,7 +111,9 @@ describe("Sound operations", () => {
       for (const template of templates) {
         expect(template).toHaveProperty("name");
         expect(template).toHaveProperty("contents");
-        expect(Array.isArray(template?.contents)).toBe(true);
+        if (template?.contents) {
+          expect(Array.isArray(template.contents)).toBe(true);
+        }
       }
     } catch (e) {
       console.error(e);
@@ -140,8 +142,8 @@ describe("Sound operations", () => {
       const rawResult: any = await Sound.list();
       expect(rawResult).toHaveProperty("templates");
       const { templates } = rawResult;
-      allTemplatesCount = templates.length;
       expect(Array.isArray(templates)).toBe(true);
+      allTemplatesCount = templates.length;
       for (const template of templates) {
         expect(template).toHaveProperty("templateName");
         expect(template).toHaveProperty("description");
