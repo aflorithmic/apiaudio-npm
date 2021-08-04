@@ -56,6 +56,20 @@ export interface ISoundBody {
   backgroundTrackId: string;
 }
 
+export interface ISoundTemplatesFilteringBody {
+  /** Try with one or more (separated by commas) of: news, travel, business, relaxation, fitness, relax, children stories */
+  industryExamples?: string;
+  /** Try with one or more (separated by commas) of: intro, main, outro, effect1, effect2, main outro, droid_main, chewie_main, effect3, ambience, only effects */
+  contents?: string;
+  /** Try with one of: electronic, acoustic, atmospheric, abstract, rock */
+  genre?: string;
+  /** Try with one of: mid, up, down, uptempo */
+  tempo?: string;
+  /** Try with one or more (separated by commas) of: intense, minimal, reflective, melodic, happy, nostalgic, focus, energetic, uplifting, active, relaxed, ambience, mysterious, positive, informative, workout, work, meditation, travel, full silence */
+  tags?: string;
+  [key: string]: any;
+}
+
 export type SectionConfig = {
   /** Voice name. See the list of available voices using Voice resource. Default voice is "Joanna".
    */
