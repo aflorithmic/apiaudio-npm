@@ -93,10 +93,6 @@ export type EffectOptions =
   | "volume_boost_high";
 export interface IMasteringBody {
   scriptId: string;
-  /** The background track file ID.
-   * @deprecated
-   */
-  backgroundTrackId?: string;
   /** The sound template name. For the list of available sound templates check `Sound.templates()` call
    */
   soundTemplate?: string;
@@ -129,6 +125,19 @@ export interface IVoiceFilteringBody {
 }
 
 export interface ISyncTTSBody {
+  /** voice id */
   voice: string;
+  /** text to be converted to speech */
   text: string;
+  /** metadata to be returned */
+  metadata?: "full" | "none";
+}
+
+export interface IMediaListBody {
+  /** If passed, will only return that file, or an empty object if it does not exist. */
+  mediaId?: string;
+  /** Comma separated tags you want to add to your uploaded file. If passed, will return all files that at least contain those tags. */
+  tags?: string;
+  /** if true, a presigned url is added to each item on the array. This is slow for large amount of files (around 1s each). */
+  downloadUrl?: boolean;
 }
