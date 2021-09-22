@@ -102,6 +102,8 @@ export interface IMasteringBody {
   public?: boolean;
   /** To create a VAST file of your mastered file. The `vast` flag only works if `public` is `True`. */
   vast?: boolean;
+  /** Media files to be used in the SSML tags */
+  mediaFiles?: Audience;
 }
 
 export interface IVoiceFilteringBody {
