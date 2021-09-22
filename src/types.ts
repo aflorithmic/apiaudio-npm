@@ -127,4 +127,12 @@ export interface IVoiceFilteringBody {
 export interface ISyncTTSBody {
   voice: string;
   text: string;
+
+export interface IMediaListBody {
+  /** If passed, will only return that file, or an empty object if it does not exist. */
+  mediaId?: string;
+  /** Comma separated tags you want to add to your uploaded file. If passed, will return all files that at least contain those tags. */
+  tags?: string;
+  /** if true, a presigned url is added to each item on the array. This is slow for large amount of files (around 1s each). */
+  downloadUrl?: boolean;
 }
