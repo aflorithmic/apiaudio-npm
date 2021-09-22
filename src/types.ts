@@ -125,8 +125,13 @@ export interface IVoiceFilteringBody {
 }
 
 export interface ISyncTTSBody {
+  /** voice id */
   voice: string;
+  /** text to be converted to speech */
   text: string;
+  /** metadata to be returned */
+  metadata?: "full" | "none";
+}
 
 export interface IMediaListBody {
   /** If passed, will only return that file, or an empty object if it does not exist. */
