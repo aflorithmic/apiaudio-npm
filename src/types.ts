@@ -93,10 +93,6 @@ export type EffectOptions =
   | "volume_boost_high";
 export interface IMasteringBody {
   scriptId: string;
-  /** The background track file ID.
-   * @deprecated
-   */
-  backgroundTrackId?: string;
   /** The sound template name. For the list of available sound templates check `Sound.templates()` call
    */
   soundTemplate?: string;
