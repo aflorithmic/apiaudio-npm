@@ -49,6 +49,8 @@ export interface ISpeechBody extends SectionConfig {
     }```
   */
   sections?: Record<string, SectionConfig>;
+  /** Allow sync or async speech creation. Defaults to true. If false, speech create call will return a success message when the speech creation is triggered */
+  sync?: boolean;
 }
 
 export interface ISoundBody {
