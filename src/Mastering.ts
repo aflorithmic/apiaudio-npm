@@ -1,7 +1,7 @@
 import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
-import { IConfig, IMasteringBody, PersonalisationParameters } from "./types";
+import { EndFormats, IConfig, IMasteringBody, PersonalisationParameters } from "./types";
 
 export class MasteringClass {
   #initialized = false;
@@ -30,13 +30,14 @@ export class MasteringClass {
     scriptId: string,
     parameters: PersonalisationParameters = {},
     _public = false,
-    vast = false
+    vast = false,
+    endFormat?: EndFormats[]
   ): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
     return this.#RequestClass.getRequest(this.#file_url, "", {
-      params: { ...parameters, scriptId, public: _public, vast }
+      params: { ...parameters, scriptId, public: _public, vast, endFormat }
     });
   }
 

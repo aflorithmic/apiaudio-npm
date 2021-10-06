@@ -49,6 +49,8 @@ export interface ISpeechBody extends SectionConfig {
     }```
   */
   sections?: Record<string, SectionConfig>;
+  /** Allow sync or async speech creation. Defaults to true. If false, speech create call will return a success message when the speech creation is triggered */
+  sync?: boolean;
 }
 
 export interface ISoundBody {
@@ -91,6 +93,7 @@ export type EffectOptions =
   | "volume_boost_low"
   | "volume_boost_middle"
   | "volume_boost_high";
+export type EndFormats = "wav" | "mp3" | "mp3_c_128" | "flac" | "ogg";
 export interface IMasteringBody {
   scriptId: string;
   /** The sound template name. For the list of available sound templates check `Sound.templates()` call
@@ -104,6 +107,10 @@ export interface IMasteringBody {
   vast?: boolean;
   /** Media files to be used in the SSML tags */
   mediaFiles?: Audience;
+  /** List of audio formats to be produced. Valid formats are: `["wav", "mp3", "mp3_c_128", "flac", "ogg"]` */
+  endFormat?: EndFormats[];
+  /** force the audio length of the mastered track (in seconds). */
+  forceLength?: number;
 }
 
 export interface IVoiceFilteringBody {
