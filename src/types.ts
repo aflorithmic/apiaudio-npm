@@ -149,4 +149,6 @@ export interface IMediaListBody {
   tags?: string;
   /** if true, a presigned url is added to each item on the array. This is slow for large amount of files (around 1s each). */
   downloadUrl?: boolean;
+  /** If true, the media files listed will be the public media files provided by api.audio; defaults false. */
+  public: boolean;
 }
