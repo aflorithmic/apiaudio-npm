@@ -173,6 +173,8 @@ describe("Sound operations", () => {
     const bad_tag_name = "bad_tag_name";
     try {
       await Sound.list({ bad_tag_name });
+
+      throw new Error("test failed");
     } catch (e) {
       expect(e).toHaveProperty("message");
       expect(e).toHaveProperty("allowedFilteringParameters");

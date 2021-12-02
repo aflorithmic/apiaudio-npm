@@ -60,6 +60,8 @@ describe("Voice operations", () => {
   test("It should not return any voice, and should list available filtering parmeters", async () => {
     try {
       await Voice.list({ notExistingFilteringParameter: "value" });
+
+      throw new Error("test failed");
     } catch (e) {
       expect(e).toHaveProperty("message");
       expect(e).toHaveProperty("allowedFilteringParameters");
