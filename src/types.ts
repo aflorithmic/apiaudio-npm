@@ -152,3 +152,16 @@ export interface IMediaListBody {
   /** If true, the media files listed will be the public media files provided by api.audio; defaults false. */
   public: boolean;
 }
+
+export interface IBirdcacheBody {
+  /** Type of the event. */
+  type: "mastering" | "speech" | "sync_tts";
+  /** The text you want to do speech/mastering with. */
+  text: string;
+  /** The voice for speech creation. */
+  voice: string;
+  /** The key pair object for personalisation parameters. */
+  audience?: Record<string, string[]>;
+  /** The sound template for mastering creation. Only needed when the type is mastering. */
+  soundTemplate?: string;
+}
