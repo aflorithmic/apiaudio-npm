@@ -116,6 +116,8 @@ describe("Script operations", () => {
   test("It should fail to retrieve a random script text with non-existing category", async () => {
     try {
       await Script.getRandomText("~");
+
+      throw new Error("test failed");
     } catch (e) {
       expect(e).toHaveProperty("message");
       expect(e?.message).toMatch("category provided does not exist");
