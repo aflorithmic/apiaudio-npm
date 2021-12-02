@@ -7,14 +7,12 @@ export class MasteringClass {
   #initialized = false;
   #RequestClass!: RequestBase;
   #url = "";
-  #file_url = "";
 
   public configure(config: IConfig, requestClass: RequestBase): void {
     if (this.#initialized) {
       isSubmoduleAlreadyInitializedError();
     }
     this.#url = `${config.baseUrl}/mastering`;
-    this.#file_url = `${config.baseUrl}/file/mastering`;
     this.#initialized = true;
     this.#RequestClass = requestClass;
   }
@@ -36,7 +34,7 @@ export class MasteringClass {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#file_url, "", {
+    return this.#RequestClass.getRequest(this.#url, "", {
       params: { ...parameters, scriptId, public: _public, vast, endFormat }
     });
   }
@@ -57,7 +55,6 @@ export class MasteringClass {
     // @ts-ignore
     this.#RequestClass = undefined;
     this.#url = "";
-    this.#file_url = "";
   }
 }
 
