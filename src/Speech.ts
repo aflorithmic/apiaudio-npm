@@ -7,14 +7,12 @@ export class SpeechClass {
   #initialized = false;
   #RequestClass!: RequestBase;
   #url = "";
-  #file_url = "";
 
   public configure(config: IConfig, requestClass: RequestBase): void {
     if (this.#initialized) {
       isSubmoduleAlreadyInitializedError();
     }
     this.#url = `${config.baseUrl}/speech`;
-    this.#file_url = `${config.baseUrl}/file/speech`;
     this.#initialized = true;
     this.#RequestClass = requestClass;
   }
@@ -33,7 +31,7 @@ export class SpeechClass {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#file_url, undefined, {
+    return this.#RequestClass.getRequest(this.#url, undefined, {
       params: { scriptId, section, parameters },
       timeout: 30000
     });
@@ -55,7 +53,6 @@ export class SpeechClass {
     // @ts-ignore
     this.#RequestClass = undefined;
     this.#url = "";
-    this.#file_url = "";
   }
 }
 
