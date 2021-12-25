@@ -1,6 +1,6 @@
 {
   "name": "apiaudio",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "api.audio Javascript SDK",
   "author": "salih <salih@aflorithmic.ai>",
   "license": "MIT",
