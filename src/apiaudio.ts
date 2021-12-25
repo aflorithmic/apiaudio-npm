@@ -10,6 +10,7 @@ import { MasteringClass } from "./Mastering";
 import { SyncTTSClass } from "./SyncTTS";
 import { MediaClass } from "./Media";
 import { BirdcacheClass } from "./Birdcache";
+import { ConnectorClass } from "./Connector";
 
 interface IComponent {
   configure(config: IConfig, requestClass: RequestBase): void | Promise<never>;
@@ -25,6 +26,7 @@ class apiaudioClass {
   public Mastering!: MasteringClass;
   public Media!: MediaClass;
   public Birdcache!: BirdcacheClass;
+  public Connector!: ConnectorClass;
   #config!: IConfig;
   #components: IComponent[] = [];
   #initialized = false;
