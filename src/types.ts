@@ -27,10 +27,14 @@ export interface IScriptBody {
   scriptName?: string;
   /** Custom identifier for your script. If scriptId parameter is used, then projectName, moduleName and scriptName are required parameters. */
   scriptId?: string;
+  /** Object defining varying scriptText per version */
+  versions?: Versions;
 }
 
 export interface ISpeechBody extends SectionConfig {
   scriptId: string;
+  version?: string;
+  requestId?: string;
   speed?: string; // re-defining this because it can only be string in speech body, but it must be a number in section config
   /** List of objects containing the personalisation parameters as key-value pairs. This parameter depends on the number of parameters you used in your script resource. For instance, if in the script resource you have `scriptText="Hello {{name}} {{lastname}}"`, the audience should be: `[{"username": "Elon", "lastname": "Musk"}]` */
   audience?: Audience;
@@ -84,6 +88,7 @@ export type SectionConfig = {
   silence_padding?: string | number;
 };
 export type PersonalisationParameters = Record<string, string>;
+export type Versions = Record<string, string>;
 export type Audience = [PersonalisationParameters];
 export type EffectOptions =
   | "dark_father"
@@ -96,6 +101,7 @@ export type EffectOptions =
 export type EndFormats = "wav" | "mp3" | "mp3_c_128" | "flac" | "ogg";
 export interface IMasteringBody {
   scriptId: string;
+  version?: string;
   /** The sound template name. For the list of available sound templates check `Sound.templates()` call
    */
   soundTemplate?: string;
