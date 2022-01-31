@@ -34,7 +34,6 @@ export interface IScriptBody {
 export interface ISpeechBody extends SectionConfig {
   scriptId: string;
   version?: string;
-  requestId?: string;
   speed?: string; // re-defining this because it can only be string in speech body, but it must be a number in section config
   /** List of objects containing the personalisation parameters as key-value pairs. This parameter depends on the number of parameters you used in your script resource. For instance, if in the script resource you have `scriptText="Hello {{name}} {{lastname}}"`, the audience should be: `[{"username": "Elon", "lastname": "Musk"}]` */
   audience?: PersonalisationParameters;
