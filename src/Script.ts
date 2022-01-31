@@ -33,11 +33,14 @@ export class ScriptClass {
    * Get script by id
    * @param scriptId
    */
-  public retrieve(scriptId: string): Promise<unknown> {
+  public retrieve(
+      scriptId: string,
+      version?: string
+    ): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#url, scriptId);
+    return this.#RequestClass.getRequest(this.#url, scriptId, { params: { version }});
   }
 
   /**

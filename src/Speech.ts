@@ -25,6 +25,7 @@ export class SpeechClass {
    */
   public retrieve(
     scriptId: string,
+    version?: string,
     requestId?: string,
     section?: string,
     parameters?: PersonalisationParameters
@@ -33,7 +34,7 @@ export class SpeechClass {
       isInitializedError();
     }
     return this.#RequestClass.getRequest(this.#url, undefined, {
-      params: { scriptId, section, parameters },
+      params: { scriptId, version, requestId, section, parameters },
       timeout: 30000
     });
   }

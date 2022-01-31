@@ -29,13 +29,14 @@ export class MasteringClass {
     parameters: PersonalisationParameters = {},
     _public = false,
     vast = false,
+    version?: string,
     endFormat?: EndFormats[]
   ): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
     return this.#RequestClass.getRequest(this.#url, "", {
-      params: { ...parameters, scriptId, public: _public, vast, endFormat }
+      params: { ...parameters, scriptId, public: _public, vast, version, endFormat }
     });
   }
 
