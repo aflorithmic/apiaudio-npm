@@ -25,6 +25,7 @@ export class SpeechClass {
    */
   public retrieve(
     scriptId: string,
+    requestId?: string,
     section?: string,
     parameters?: PersonalisationParameters
   ): Promise<unknown> {
