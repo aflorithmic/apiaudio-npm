@@ -1,4 +1,4 @@
-const apiaudio = require("./lib").default;
+const apiaudio = require("./lib/src").default;
 require("dotenv").config();
 
 async function example() {
