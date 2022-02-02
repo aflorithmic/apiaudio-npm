@@ -1,7 +1,7 @@
 import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
-import { IConfig, IScriptBody } from "./types";
+import { IConfig, IScriptBody, IScriptListBody } from "./types";
 
 export class ScriptClass {
   #initialized = false;
@@ -20,24 +20,26 @@ export class ScriptClass {
   }
 
   /**
-   * List all scripts
+   * Lists scripts with filtering support
+   * @param filters
    */
-  public list(): Promise<unknown> {
+  public list(filters?: IScriptListBody): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#url);
+    return this.#RequestClass.getRequest(this.#url, "", { params: filters });
   }
 
   /**
    * Get script by id
    * @param scriptId
+   * @param version
    */
-  public retrieve(scriptId: string): Promise<unknown> {
+  public retrieve(scriptId: string, version?: string): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#url, scriptId);
+    return this.#RequestClass.getRequest(this.#url, scriptId, { params: { version } });
   }
 
   /**
@@ -60,6 +62,18 @@ export class ScriptClass {
       isInitializedError();
     }
     return this.#RequestClass.postRequest(this.#url, data);
+  }
+
+  /**
+   * Delete script by scriptId
+   * @param scriptId
+   * @param version Version to be deleted
+   */
+  public delete(scriptId: string, version?: string): Promise<unknown> {
+    if (!this.#initialized) {
+      isInitializedError();
+    }
+    return this.#RequestClass.deleteRequest(this.#url, "", { params: { scriptId, version } });
   }
 
   public reset(): void {
