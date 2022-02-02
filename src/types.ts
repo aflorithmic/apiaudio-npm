@@ -16,6 +16,17 @@ export enum ErrorTypes {
   alreadyInitializedModule = "The package has already been initialized and configured. Do not try to configure it again. If you want to reset it, use apiaudio.reset() - apiaudio"
 }
 
+export interface IScriptListBody {
+  /** The name of your project. */
+  projectName?: string;
+  /** The name of your module. */
+  moduleName?: string;
+  /** The name of your script. */
+  scriptName?: string;
+  /** The id of your script. */
+  scriptId?: string;
+}
+
 export interface IScriptBody {
   /** Text for your script. A script can contain multiple sections and SSML tags. Learn more about scriptText details [here](https://docs.api.audio/docs/script-2) */
   scriptText: string;
@@ -27,13 +38,15 @@ export interface IScriptBody {
   scriptName?: string;
   /** Custom identifier for your script. If scriptId parameter is used, then projectName, moduleName and scriptName are required parameters. */
   scriptId?: string;
+  /** An object containing different versions of your script text, whereby the key is the version name, and its value is the associated `scriptText`. Version name `v0` is reserved as the default `scriptText`. Default value is "{}" */
+  versions?: { [key: string]: string };
 }
 
 export interface ISpeechBody extends SectionConfig {
   scriptId: string;
   speed?: string; // re-defining this because it can only be string in speech body, but it must be a number in section config
   /** List of objects containing the personalisation parameters as key-value pairs. This parameter depends on the number of parameters you used in your script resource. For instance, if in the script resource you have `scriptText="Hello {{name}} {{lastname}}"`, the audience should be: `[{"username": "Elon", "lastname": "Musk"}]` */
-  audience?: Audience;
+  audience?: PersonalisationParameters;
   /** An object (key-value pairs), where the key is a section name, and the value is another object with the section configuration (valid parameters are: voice, speed, effect, silence_padding). If a section is not found here, the section will automatically inherit the voice, speed, effect and silence_padding values you defined above (or the default ones if you don't provide them). See an example below with 2 sections and different configuration parameters being used.
     ```{
       "firstsection": {
@@ -51,6 +64,8 @@ export interface ISpeechBody extends SectionConfig {
   sections?: Record<string, SectionConfig>;
   /** Allow sync or async speech creation. Defaults to true. If false, speech create call will return a success message when the speech creation is triggered */
   sync?: boolean;
+  /** Version to be produced. Defaults to empty string */
+  version?: string;
 }
 
 export interface ISoundBody {
@@ -83,8 +98,9 @@ export type SectionConfig = {
   /** Add a silence padding to your speech tracks (in milliseconds). Default is 0 (no padding) */
   silence_padding?: string | number;
 };
-export type PersonalisationParameters = Record<string, string>;
-export type Audience = [PersonalisationParameters];
+
+/** For backwards compatibility, [{}] type is still allowed, however the documented type is {}. */
+export type PersonalisationParameters = Record<string, string> | [Record<string, string>];
 export type EffectOptions =
   | "dark_father"
   | "chewie"
@@ -100,17 +116,19 @@ export interface IMasteringBody {
    */
   soundTemplate?: string;
   /** List of objects containing the personalisation parameters. This parameter depends on the number of parameters you used in your script resource. */
-  audience?: Audience;
+  audience?: PersonalisationParameters;
   /** To store the mastered file in a public s3 folder. Default value is `false`. Warning - This will cause your mastered files to be public to anyone in the internet. Use this at your own risk. */
   public?: boolean;
   /** To create a VAST file of your mastered file. The `vast` flag only works if `public` is `True`. */
   vast?: boolean;
   /** Media files to be used in the SSML tags */
-  mediaFiles?: Audience;
+  mediaFiles?: PersonalisationParameters;
   /** List of audio formats to be produced. Valid formats are: `["wav", "mp3", "mp3_c_128", "flac", "ogg"]` */
   endFormat?: EndFormats[];
   /** force the audio length of the mastered track (in seconds). */
   forceLength?: number;
+  /** Version to be produced. Defaults to empty string */
+  version?: string;
 }
 
 export interface IVoiceFilteringBody {
