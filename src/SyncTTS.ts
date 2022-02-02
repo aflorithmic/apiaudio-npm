@@ -12,7 +12,7 @@ export class SyncTTSClass {
     if (this.#initialized) {
       isSubmoduleAlreadyInitializedError();
     }
-    this.#url = `${config.baseUrl}/sync_speech/synthesize`;
+    this.#url = `${config.baseUrl}/speech/sync`;
     this.#initialized = true;
     this.#RequestClass = requestClass;
   }
