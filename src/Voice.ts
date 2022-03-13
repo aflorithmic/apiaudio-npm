@@ -41,7 +41,7 @@ export class VoiceClass {
 
   public reset(): void {
     this.#initialized = false;
-    // @ts-ignore
+    // @ts-expect-error
     this.#RequestClass = undefined;
     this.#url = "";
   }

@@ -37,7 +37,7 @@ describe("Speech operations", () => {
 
   test("It should create a speech from a new script", async () => {
     try {
-      // @ts-ignore
+      // @ts-expect-error
       const { scriptId } = await Script.create({
         scriptText: testScriptText,
         scriptName: testValues,

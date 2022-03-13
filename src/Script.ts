@@ -46,7 +46,7 @@ export class ScriptClass {
    * Retrieve random text from a list of categories
    * @param category The category from which the random text is retrieved. If no category is specified, the function defaults to "FunFact" - Categories currently available: "BibleVerse", "FunFact", "InspirationalQuote", "Joke", "MovieSynopsis", "Poem", "PhilosophicalQuestion", "Recipe", "TriviaQuestion"
    */
-  public getRandomText(category?: string): Promise<unknown> {
+  public random(category?: string): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
@@ -76,9 +76,21 @@ export class ScriptClass {
     return this.#RequestClass.deleteRequest(this.#url, "", { params: { scriptId, version } });
   }
 
+  /**
+   * Return a script with the dictionary highlighting applied.
+   * @param scriptId
+   * @param lang Determines which dictionary language should be used. The format should be compliant with ISO Language Code standard (e.g. en-GB)
+   */
+  public preview(scriptId: string, lang: string): Promise<unknown> {
+    if (!this.#initialized) {
+      isInitializedError();
+    }
+    return this.#RequestClass.getRequest(this.#url, scriptId, { params: { preview: true, lang } });
+  }
+
   public reset(): void {
     this.#initialized = false;
-    // @ts-ignore
+    // @ts-expect-error
     this.#RequestClass = undefined;
     this.#url = "";
     this.#random_url = "";

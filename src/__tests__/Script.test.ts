@@ -37,7 +37,7 @@ describe("Script operations", () => {
 
   test("It should create a new script", async () => {
     try {
-      // @ts-ignore
+      // @ts-expect-error
       const { scriptId, scriptText, scriptName, moduleName, projectName } = await Script.create({
         scriptText: testScriptText,
         scriptName: testValues,
@@ -57,7 +57,7 @@ describe("Script operations", () => {
 
   test("It should retrieve the created script", async () => {
     try {
-      // @ts-ignore
+      // @ts-expect-error
       const { scriptText, scriptName, moduleName, projectName } = await Script.retrieve(
         createdScriptId
       );
@@ -93,7 +93,7 @@ describe("Script operations", () => {
 
   test("It should retrieve a random script text", async () => {
     try {
-      const randomText = await Script.getRandomText();
+      const randomText = await Script.random();
       expect(randomText).toBeDefined();
       expect(typeof randomText).toBe("string");
     } catch (e) {
@@ -104,7 +104,7 @@ describe("Script operations", () => {
 
   test("It should retrieve a random script text with category", async () => {
     try {
-      const randomText = await Script.getRandomText("BibleVerse");
+      const randomText = await Script.random("BibleVerse");
       expect(randomText).toBeDefined();
       expect(typeof randomText).toBe("string");
     } catch (e) {
@@ -115,7 +115,7 @@ describe("Script operations", () => {
 
   test("It should fail to retrieve a random script text with non-existing category", async () => {
     try {
-      await Script.getRandomText("~");
+      await Script.random("~");
 
       throw new Error("test failed");
     } catch (e) {

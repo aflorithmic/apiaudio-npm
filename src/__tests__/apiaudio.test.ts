@@ -6,7 +6,7 @@ describe("Main module initialization", () => {
   beforeEach(() => apiaudio.reset());
 
   test("It should require apiKey in configuration", () => {
-    // @ts-ignore
+    // @ts-expect-error
     expect(() => apiaudio.configure().toThrowError(/must be a valid string/));
   });
 

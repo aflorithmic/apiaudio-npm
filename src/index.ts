@@ -8,6 +8,7 @@ import { Mastering } from "./Mastering";
 import { Media } from "./Media";
 import { Birdcache } from "./Birdcache";
 import { Connector } from "./Connector";
+import { Lexi } from "./Lexi";
 
 apiaudio.Script = Script;
 apiaudio.Speech = Speech;
@@ -18,6 +19,7 @@ apiaudio.SyncTTS = SyncTTS;
 apiaudio.Media = Media;
 apiaudio.Birdcache = Birdcache;
 apiaudio.Connector = Connector;
+apiaudio.Lexi = Lexi;
 
 export default apiaudio;
-export { Script, Speech, Voice, Sound, Mastering, SyncTTS, Media, Birdcache, Connector };
+export { Script, Speech, Voice, Sound, Mastering, SyncTTS, Media, Birdcache, Connector, Lexi };

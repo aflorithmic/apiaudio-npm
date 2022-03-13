@@ -11,6 +11,7 @@ import { SyncTTSClass } from "./SyncTTS";
 import { MediaClass } from "./Media";
 import { BirdcacheClass } from "./Birdcache";
 import { ConnectorClass } from "./Connector";
+import { LexiClass } from "./Lexi";
 
 interface IComponent {
   configure(config: IConfig, requestClass: RequestBase): void | Promise<never>;
@@ -27,6 +28,7 @@ class apiaudioClass {
   public Media!: MediaClass;
   public Birdcache!: BirdcacheClass;
   public Connector!: ConnectorClass;
+  public Lexi!: LexiClass;
   #config!: IConfig;
   #components: IComponent[] = [];
   #initialized = false;
@@ -65,7 +67,7 @@ class apiaudioClass {
    * Reset the initialization
    */
   public reset(): void {
-    // @ts-ignore
+    // @ts-expect-error
     this.#config = {};
     this.#components.map(comp => comp.reset());
     this.#initialized = false;

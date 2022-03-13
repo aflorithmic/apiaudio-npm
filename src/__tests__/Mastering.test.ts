@@ -40,7 +40,7 @@ describe("Mastering operations", () => {
 
   test("It should create a speech from a new script to test the mastering", async () => {
     try {
-      // @ts-ignore
+      // @ts-expect-error
       const { scriptId } = await Script.create({
         scriptText: testScriptText,
         scriptName: testValues,
