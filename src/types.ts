@@ -129,6 +129,8 @@ export interface IMasteringBody {
   forceLength?: number;
   /** Version to be produced. Defaults to empty string */
   version?: string;
+  /** If you would like to have a sharable link created with your audio file, use this flag. */
+  share?: boolean;
 }
 
 type VoiceAttributes =
