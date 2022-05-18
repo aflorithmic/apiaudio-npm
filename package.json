@@ -1,6 +1,6 @@
 {
   "name": "apiaudio",
-  "version": "0.7.1",
+  "version": "0.7.3",
   "description": "api.audio Javascript SDK",
   "author": "salih <salih@aflorithmic.ai>",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "git+https://github.com/aflorithmic/apiaudio-npm.git"
   },
-  "types": "lib/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
