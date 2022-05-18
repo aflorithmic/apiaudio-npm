@@ -1,7 +1,7 @@
 import { apiaudio } from "./apiaudio";
 import { isInitializedError, isSubmoduleAlreadyInitializedError } from "./Errors";
 import { RequestBase } from "./RequestBase";
-import { IConfig, IVoiceFilteringBody } from "./types";
+import { IConfig, IVoiceFilteringBody, IVoiceListParams } from "./types";
 
 export class VoiceClass {
   #initialized = false;
@@ -20,13 +20,13 @@ export class VoiceClass {
   }
 
   /**
-   * List all voices
+   * List all voices with filtering options
    */
-  public list(params?: IVoiceFilteringBody): Promise<unknown> {
+  public list(data?: IVoiceFilteringBody, params?: IVoiceListParams): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#url, "", { params });
+    return this.#RequestClass.postRequest(this.#url, data, { params });
   }
 
   /**

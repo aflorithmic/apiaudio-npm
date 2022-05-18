@@ -131,24 +131,27 @@ export interface IMasteringBody {
   version?: string;
 }
 
-export interface IVoiceFilteringBody {
-  /** Try with one of: amazon polly, google, microsoft azure, aflorithmic labs */
-  providerFullName?: string;
-  /** Try one of: google, polly, azure, msnr */
-  provider?: string;
-  /** Try with one of: male, female */
-  gender?: string;
-  /** Try with one of: english, spanish, french, german */
-  language?: string;
-  /** Try with one of: american, british, neutral, portuguese/brazilian, american soft, mexican, australian */
-  accent?: string;
-  /** Try with one of: adult, child, senior */
-  ageBracket?: string;
-  /** Try with one or more (separated by commas) of: steady, confident, balanced, informative, serious, storytelling, calm, deep, formal, sad, thin, energetic, upbeat, fun, tense, flat, low pitched, high pitched, fast, slow */
-  tags?: string;
-  /** Try with one or more (separated by commas) of: fitness, business, commercial, fashion, travel, audiobook, real estate, faith, health industry, kids entertainment, games, customer service, education, storytelling, entertainment, kids */
-  industryExamples?: string;
-  [key: string]: any;
+type VoiceAttributes =
+  | "provider"
+  | "gender"
+  | "language"
+  | "accent"
+  | "ageBracket"
+  | "tags"
+  | "industryExamples"
+  | "sectionCharacterLimit"
+  | "timePerformance";
+
+type VoiceComparisonOperators = "$gt" | "$gte" | "$lt" | "$lte" | "$contains" | "$is_in" | "$ne";
+
+export type IVoiceFilteringBody = {
+  [key in VoiceAttributes]: Record<VoiceComparisonOperators, string | string[]> | string;
+};
+
+export interface IVoiceListParams {
+  sort?: "priority" | VoiceAttributes;
+  limit?: number;
+  offset?: number;
 }
 
 export interface ISyncTTSBody {
