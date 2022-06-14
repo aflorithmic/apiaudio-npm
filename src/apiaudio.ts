@@ -1,5 +1,5 @@
 import { API_BASE_URL, API_BASE_URL_STAGING } from "./constants";
-import { isModuleAlreadyInitializedError, isValidAuthError } from "./Errors";
+import { isInitializedError, isModuleAlreadyInitializedError, isValidAuthError } from "./Errors";
 import { IConfig, IInputConfig } from "./types";
 import { RequestBase } from "./RequestBase";
 import { ScriptClass } from "./Script";
@@ -30,6 +30,7 @@ class apiaudioClass {
   public Connector!: ConnectorClass;
   public Lexi!: LexiClass;
   #config!: IConfig;
+  #assumeOrgId: string | null = null;
   #components: IComponent[] = [];
   #initialized = false;
 
@@ -64,12 +65,31 @@ class apiaudioClass {
   }
 
   /**
+   * For super organisations to assume one of their child orgs. To stop assuming, simply call this function with null.
+   * @param orgId - org id of one of child orgs or null
+   */
+  public setAssumeOrgId(orgId: string | null) {
+    if (!this.#initialized) {
+      isInitializedError();
+    }
+    this.#assumeOrgId = orgId;
+    this.#components.map(comp => comp.reset());
+    const requestClass = new RequestBase(
+      this.#config.apiKey,
+      this.#config.bearer,
+      this.#assumeOrgId
+    );
+    this.#components.map(comp => comp.configure(this.#config, requestClass));
+  }
+
+  /**
    * Reset the initialization
    */
   public reset(): void {
     // @ts-expect-error
     this.#config = {};
     this.#components.map(comp => comp.reset());
+    this.#assumeOrgId = null;
     this.#initialized = false;
   }
 }
