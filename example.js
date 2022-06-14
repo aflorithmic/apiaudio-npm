@@ -9,6 +9,8 @@ async function example() {
       debug: true
     });
 
+    // apiaudio.setAssumeOrgId('childOrgIdToBeAssumed')
+
     let script = await apiaudio.Script.create({ scriptText: "hello world!" });
     console.log(script);
 
