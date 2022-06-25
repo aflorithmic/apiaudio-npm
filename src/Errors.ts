@@ -17,5 +17,5 @@ export const isValidAuthError = (): void => {
 };
 
 export const sdkVersionError = (): string => {
-  return ErrorTypes.notInitialized;
+  return ErrorTypes.sdkVersionNotUpToDate;
 };
