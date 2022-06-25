@@ -30,7 +30,7 @@ Script.list();
 
 ### **A detailed documentation can be found on [docs.api.audio](https://docs.api.audio)**
 
-## Webhooks secrets
+### Webhooks secrets
 
 apiaudio can optionally sign the webhook events it sends to your endpoint, allowing you to validate that they were not sent by a third-party.
 
