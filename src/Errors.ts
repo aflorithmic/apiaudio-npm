@@ -15,3 +15,7 @@ export const isModuleAlreadyInitializedError = (): void => {
 export const isValidAuthError = (): void => {
   throw new Error(ErrorTypes.validAuth);
 };
+
+export const sdkVersionError = (): string => {
+  return ErrorTypes.notInitialized;
+};

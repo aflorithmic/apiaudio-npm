@@ -13,7 +13,8 @@ export enum ErrorTypes {
   validAuth = "API key or Bearer token must be a valid string. - apiaudio",
   notInitialized = "You should configure the package before using it. - apiaudio",
   alreadyInitializedSubmodule = "This submobule has already been initialized and configured, do not try to configure it directly. - apiaudio",
-  alreadyInitializedModule = "The package has already been initialized and configured. Do not try to configure it again. If you want to reset it, use apiaudio.reset() - apiaudio"
+  alreadyInitializedModule = "The package has already been initialized and configured. Do not try to configure it again. If you want to reset it, use apiaudio.reset() - apiaudio",
+  sdkVersionNotUpToDate = `You are not using the latest version of apiaudio. Consider upgrading, as you might be missing out on new features and bug fixes. - apiaudio`
 }
 
 export interface IScriptListBody {
