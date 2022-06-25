@@ -12,6 +12,7 @@ import { MediaClass } from "./Media";
 import { BirdcacheClass } from "./Birdcache";
 import { ConnectorClass } from "./Connector";
 import { LexiClass } from "./Lexi";
+import { WebhooksClass } from "./Webhooks";
 
 interface IComponent {
   configure(config: IConfig, requestClass: RequestBase): void | Promise<never>;
@@ -29,6 +30,7 @@ class apiaudioClass {
   public Birdcache!: BirdcacheClass;
   public Connector!: ConnectorClass;
   public Lexi!: LexiClass;
+  public Webhooks!: WebhooksClass;
   #config!: IConfig;
   #assumeOrgId: string | null = null;
   #components: IComponent[] = [];

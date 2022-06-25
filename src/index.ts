@@ -9,6 +9,7 @@ import { Media } from "./Media";
 import { Birdcache } from "./Birdcache";
 import { Connector } from "./Connector";
 import { Lexi } from "./Lexi";
+import { Webhooks } from "./Webhooks";
 
 apiaudio.Script = Script;
 apiaudio.Speech = Speech;
@@ -20,6 +21,19 @@ apiaudio.Media = Media;
 apiaudio.Birdcache = Birdcache;
 apiaudio.Connector = Connector;
 apiaudio.Lexi = Lexi;
+apiaudio.Webhooks = Webhooks;
 
 export default apiaudio;
-export { Script, Speech, Voice, Sound, Mastering, SyncTTS, Media, Birdcache, Connector, Lexi };
+export {
+  Script,
+  Speech,
+  Voice,
+  Sound,
+  Mastering,
+  SyncTTS,
+  Media,
+  Birdcache,
+  Connector,
+  Lexi,
+  Webhooks
+};
