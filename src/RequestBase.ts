@@ -18,7 +18,7 @@ export class RequestBase {
 
   private checkSdkVersion(response: any) {
     const latestVersion = response.headers["x-sdk-latest"];
-    if (!this.#sdkVersionWarningShown && this.#sdkVersion !== latestVersion) {
+    if (latestVersion && !this.#sdkVersionWarningShown && this.#sdkVersion !== latestVersion) {
       this.#sdkVersionWarningShown = true;
       console.warn(
         sdkVersionError(),
