@@ -1,5 +1,6 @@
 import type CryptoProvider from "./crypto/CryptoProvider";
 import NodeCryptoProvider from "./crypto/NodeCryptoProvider";
+import SubtleCryptoProvider from "./crypto/SubtleCryptoProvider";
 
 type Header = {
   timestamp: number;
@@ -153,7 +154,11 @@ let webhooksNodeCryptoProviderInstance: CryptoProvider | null = null;
  */
 function getNodeCryptoProvider() {
   if (!webhooksNodeCryptoProviderInstance) {
-    webhooksNodeCryptoProviderInstance = new NodeCryptoProvider();
+    try {
+      webhooksNodeCryptoProviderInstance = new NodeCryptoProvider();
+    } catch {
+      webhooksNodeCryptoProviderInstance = new SubtleCryptoProvider();
+    }
   }
   return webhooksNodeCryptoProviderInstance;
 }

@@ -8,7 +8,7 @@ import CryptoProvider from "./CryptoProvider";
 export default class SubtleCryptoProvider extends CryptoProvider {
   subtleCrypto;
 
-  constructor(subtleCrypto: SubtleCrypto) {
+  constructor(subtleCrypto?: SubtleCrypto) {
     super();
 
     // If no subtle crypto is interface, default to the global namespace. This

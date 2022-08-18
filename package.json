@@ -50,6 +50,7 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "axios": ">=0.27.2"
+    "axios": ">=0.27.2",
+    "crypto-browserify": "^3.12.0"
   }
 }
