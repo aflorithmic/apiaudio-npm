@@ -39,6 +39,18 @@ export class RequestBase {
     });
   }
 
+  public putRequest(url: string, data: unknown, config: AxiosRequestConfig = {}): any {
+    return new Promise((res, rej) => {
+      this.#axios
+        .put(url, data, { ...config })
+        .then(({ data: result }) => res(result))
+        .catch(({ response }) => {
+          this.checkSdkVersion(response);
+          rej(response.data);
+        });
+    });
+  }
+
   public getRequest(url: string, path = "", config: AxiosRequestConfig = {}): any {
     return new Promise((res, rej) => {
       this.#axios
