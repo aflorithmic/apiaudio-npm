@@ -189,3 +189,16 @@ export interface IBirdcacheBody {
   /** The sound template for mastering creation. Only needed when the type is mastering. */
   soundTemplate?: string;
 }
+
+export interface IDictionaryRegisterCustomWordBody {
+  /** Language family, e.g. en or es.dictionary - use global to register a word globally. */
+  lang: string;
+  /** The word that will be replaced */
+  word: string;
+  /** The replacement token. Can be either a plain string or a IPA token. */
+  replacement: string;
+  /** The content type of the supplied replacement, can be either basic (default) or ipa for phonetic replacements. */
+  contentType?: string;
+  /** by default the supplied replacement will apply regardless of the supplied voice, language code or provider. However edge cases can be supplied, these can be either a valid; provider name, language code (i.e. en-gb) or voice name. */
+  specialization?: string;
+}
