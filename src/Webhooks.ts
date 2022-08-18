@@ -1,5 +1,5 @@
 import type CryptoProvider from "./crypto/CryptoProvider";
-import NodeCryptoProvider from "./crypto/NodeCryptoProvider";
+// import NodeCryptoProvider from "./crypto/NodeCryptoProvider";
 import SubtleCryptoProvider from "./crypto/SubtleCryptoProvider";
 
 type Header = {
@@ -23,7 +23,6 @@ const signature = {
       this.EXPECTED_SCHEME
     );
 
-    cryptoProvider = cryptoProvider || new NodeCryptoProvider();
     const expectedSignature = cryptoProvider.computeHMACSignature(
       makeHMACContent(payload, details),
       secret
