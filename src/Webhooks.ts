@@ -23,7 +23,7 @@ const signature = {
       this.EXPECTED_SCHEME
     );
 
-    cryptoProvider = cryptoProvider || getNodeCryptoProvider();
+    cryptoProvider = cryptoProvider || new NodeCryptoProvider();
     const expectedSignature = cryptoProvider.computeHMACSignature(
       makeHMACContent(payload, details),
       secret
@@ -47,7 +47,7 @@ const signature = {
       this.EXPECTED_SCHEME
     );
 
-    cryptoProvider = cryptoProvider || getNodeCryptoProvider();
+    cryptoProvider = cryptoProvider || new SubtleCryptoProvider();
 
     const expectedSignature = await cryptoProvider.computeHMACSignatureAsync(
       makeHMACContent(payload, details),
@@ -144,23 +144,6 @@ function parseHeader(header: string, scheme: string): Header | null {
       signatures: []
     }
   );
-}
-
-let webhooksNodeCryptoProviderInstance: CryptoProvider | null = null;
-
-/**
- * Lazily instantiate a NodeCryptoProvider instance. This is a stateless object
- * so a singleton can be used here.
- */
-function getNodeCryptoProvider() {
-  if (!webhooksNodeCryptoProviderInstance) {
-    try {
-      webhooksNodeCryptoProviderInstance = new NodeCryptoProvider();
-    } catch {
-      webhooksNodeCryptoProviderInstance = new SubtleCryptoProvider();
-    }
-  }
-  return webhooksNodeCryptoProviderInstance;
 }
 
 export class WebhooksClass {
