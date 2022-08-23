@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { version } from "../package.json";
 import { sdkVersionError } from "./Errors";
 
@@ -16,8 +16,8 @@ export class RequestBase {
     this.#axios = axios.create({ headers });
   }
 
-  private checkSdkVersion(response: any) {
-    const latestVersion = response.headers["x-sdk-latest"];
+  private checkSdkVersion(response: AxiosResponse) {
+    const latestVersion = response?.headers?.["x-sdk-latest"];
     if (latestVersion && !this.#sdkVersionWarningShown && this.#sdkVersion !== latestVersion) {
       this.#sdkVersionWarningShown = true;
       console.warn(
