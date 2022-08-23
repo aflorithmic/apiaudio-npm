@@ -7,18 +7,16 @@ export class LexiClass {
   #initialized = false;
   #RequestClass!: RequestBase;
   #list_url = "";
-  #search_url = "";
-  #custom_dict_path = "";
-  #custom_word_path = "";
+  #custom_dict_url = "";
+  #custom_word_url = "";
 
   public configure(config: IConfig, requestClass: RequestBase): void {
     if (this.#initialized) {
       isSubmoduleAlreadyInitializedError();
     }
     this.#list_url = `${config.baseUrl}/diction`;
-    this.#search_url = `${config.baseUrl}/diction/search`;
-    this.#custom_dict_path = `${config.baseUrl}/diction/custom`;
-    this.#custom_word_path = `${config.baseUrl}/diction/custom/item`;
+    this.#custom_dict_url = `${config.baseUrl}/diction/custom`;
+    this.#custom_word_url = `${config.baseUrl}/diction/custom/item`;
     this.#initialized = true;
     this.#RequestClass = requestClass;
   }
@@ -36,23 +34,13 @@ export class LexiClass {
   }
 
   /**
-   * Searches to see if a word is in any of the dictionaries
-   */
-  public search(word: string, language: string): Promise<unknown> {
-    if (!this.#initialized) {
-      isInitializedError();
-    }
-    return this.#RequestClass.getRequest(this.#search_url, `${word}/${language}`);
-  }
-
-  /**
    * List words in a custom dictionary
    */
   public customWords(lang: string): Promise<unknown> {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#custom_word_path, "", {
+    return this.#RequestClass.getRequest(this.#custom_word_url, "", {
       params: { lang }
     });
   }
@@ -64,7 +52,7 @@ export class LexiClass {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.getRequest(this.#custom_dict_path);
+    return this.#RequestClass.getRequest(this.#custom_dict_url);
   }
 
   /**
@@ -77,7 +65,7 @@ export class LexiClass {
     }
     if (!data.specialization) data.specialization = "default";
     if (!data.contentType) data.contentType = "basic";
-    return this.#RequestClass.putRequest(this.#custom_word_path, data);
+    return this.#RequestClass.putRequest(this.#custom_dict_url, data);
   }
 
   /**
@@ -90,7 +78,7 @@ export class LexiClass {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.deleteRequest(this.#custom_word_path, "", {
+    return this.#RequestClass.deleteRequest(this.#custom_dict_url, "", {
       params: { word, lang, specialization }
     });
   }
@@ -100,7 +88,8 @@ export class LexiClass {
     // @ts-expect-error
     this.#RequestClass = undefined;
     this.#list_url = "";
-    this.#search_url = "";
+    this.#custom_dict_url = "";
+    this.#custom_word_url = "";
   }
 }
 
