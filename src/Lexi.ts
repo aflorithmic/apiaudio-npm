@@ -63,9 +63,9 @@ export class LexiClass {
     if (!this.#initialized) {
       isInitializedError();
     }
-    if (!data.specialization) data.specialization = "default";
-    if (!data.contentType) data.contentType = "basic";
-    return this.#RequestClass.putRequest(this.#custom_dict_url, data);
+    if (!data?.specialization) data.specialization = "default";
+    if (!data?.contentType) data.contentType = "basic";
+    return this.#RequestClass.putRequest(this.#custom_word_url, data);
   }
 
   /**
@@ -78,7 +78,7 @@ export class LexiClass {
     if (!this.#initialized) {
       isInitializedError();
     }
-    return this.#RequestClass.deleteRequest(this.#custom_dict_url, "", {
+    return this.#RequestClass.deleteRequest(this.#custom_word_url, "", {
       params: { word, lang, specialization }
     });
   }
