@@ -23,7 +23,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "prepare": "rm -rf lib coverage && npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format"
   },
