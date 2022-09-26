@@ -202,3 +202,14 @@ export interface IDictionaryRegisterCustomWordBody {
   /** by default the supplied replacement will apply regardless of the supplied voice, language code or provider. However edge cases can be supplied, these can be either a valid; provider name, language code (i.e. en-gb) or voice name. */
   specialization?: string;
 }
+
+export interface IPipelineBody {
+  /** Type of the event. */
+  type: "mastering" | "speech";
+  /** The script ids you want to do speech/mastering with. */
+  scripts: string[];
+  /** The voice or voices for speech creation. */
+  voice: string | string[];
+  /** The sound template or templates for mastering creation. Only needed when the type is mastering. */
+  soundTemplate?: string | string[];
+}

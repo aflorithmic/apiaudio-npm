@@ -10,6 +10,7 @@ import { Birdcache } from "./Birdcache";
 import { Connector } from "./Connector";
 import { Lexi } from "./Lexi";
 import { Webhooks } from "./Webhooks";
+import { Pipeline } from "./Pipeline";
 
 apiaudio.Script = Script;
 apiaudio.Speech = Speech;
@@ -22,6 +23,7 @@ apiaudio.Birdcache = Birdcache;
 apiaudio.Connector = Connector;
 apiaudio.Lexi = Lexi;
 apiaudio.Webhooks = Webhooks;
+apiaudio.Pipeline = Pipeline;
 
 export default apiaudio;
 export {
@@ -35,5 +37,6 @@ export {
   Birdcache,
   Connector,
   Lexi,
-  Webhooks
+  Webhooks,
+  Pipeline
 };
